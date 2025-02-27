@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hackedapostle</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #0a0a0a;
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .rain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .drop {
+            position: absolute;
+            width: 2px;
+            height: 100px;
+            background: linear-gradient(transparent, rgba(255, 255, 255, 0.7));
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+            }
+        }
+
+        .lightning {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: transparent;
+            opacity: 0;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .container {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .glitch-wrapper {
+            position: relative;
+            margin-bottom: 2em;
+        }
+
+        .glitch {
+            font-size: 4em;
+            font-weight: bold;
+            text-transform: uppercase;
+            position: relative;
+            text-shadow: 0.05em 0 0 #00fffc, -0.03em -0.04em 0 #fc00ff,
+                         0.025em 0.04em 0 #fffc00;
+            animation: glitch 725ms infinite;
+        }
+
+        .glitch span {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .glitch span:first-child {
+            animation: glitch 500ms infinite;
+            clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+            transform: translate(-0.04em, -0.03em);
+            opacity: 0.75;
+        }
+
+        .glitch span:last-child {
+            animation: glitch 375ms infinite;
+            clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+            transform: translate(0.04em, 0.03em);
+            opacity: 0.75;
+        }
+
+        .profile {
+            margin-top: 2em;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 2em;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+        }
+
+        .profile img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 3px solid #00ff00;
+            animation: pulse 2s infinite;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+        }
+
+        @keyframes glitch {
+            0% {
+                text-shadow: 0.05em 0 0 #00fffc, -0.03em -0.04em 0 #fc00ff,
+                            0.025em 0.04em 0 #fffc00;
+            }
+            15% {
+                text-shadow: 0.05em 0 0 #00fffc, -0.03em -0.04em 0 #fc00ff,
+                            0.025em 0.04em 0 #fffc00;
+            }
+            16% {
+                text-shadow: -0.05em -0.025em 0 #00fffc, 0.025em 0.035em 0 #fc00ff,
+                            -0.05em -0.05em 0 #fffc00;
+            }
+            49% {
+                text-shadow: -0.05em -0.025em 0 #00fffc, 0.025em 0.035em 0 #fc00ff,
+                            -0.05em -0.05em 0 #fffc00;
+            }
+            50% {
+                text-shadow: 0.05em 0.035em 0 #00fffc, 0.03em 0 0 #fc00ff,
+                            0 -0.04em 0 #fffc00;
+            }
+            99% {
+                text-shadow: 0.05em 0.035em 0 #00fffc, 0.03em 0 0 #fc00ff,
+                            0 -0.04em 0 #fffc00;
+            }
+            100% {
+                text-shadow: -0.05em 0 0 #00fffc, -0.025em -0.04em 0 #fc00ff,
+                            -0.04em -0.025em 0 #fffc00;
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(0, 255, 0, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 20px rgba(0, 255, 0, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(0, 255, 0, 0);
+            }
+        }
+
+        .terminal-text {
+            font-size: 1.2em;
+            margin-top: 1em;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+            animation-delay: 1s;
+            text-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
+        }
+
+        .bio-button {
+            margin-top: 2em;
+            padding: 0.8em 1.5em;
+            background: rgba(0, 255, 0, 0.1);
+            border: 1px solid #00ff00;
+            color: #00ff00;
+            cursor: pointer;
+            font-family: 'Courier New', monospace;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bio-button:hover {
+            background: rgba(0, 255, 0, 0.2);
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+        }
+
+        .bio-button::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                transparent,
+                rgba(0, 255, 0, 0.1),
+                transparent
+            );
+            transform: rotate(45deg);
+            animation: glint 3s infinite;
+        }
+
+        @keyframes glint {
+            0% {
+                transform: translateX(-100%) rotate(45deg);
+            }
+            50%, 100% {
+                transform: translateX(100%) rotate(45deg);
+            }
+        }
+
+        .bio-content {
+            margin-top: 2em;
+            padding: 1.5em;
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid #00ff00;
+            max-width: 600px;
+            max-height: 300px;
+            display: none;
+            text-align: left;
+            line-height: 1.6;
+            position: relative;
+            overflow-y: auto;
+            overflow-x: hidden;
+            scrollbar-width: thin;
+            scrollbar-color: #00ff00 rgba(0, 0, 0, 0.2);
+        }
+
+        .bio-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .bio-content::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .bio-content::-webkit-scrollbar-thumb {
+            background-color: #00ff00;
+            border-radius: 4px;
+        }
+
+        .bio-content.active {
+            display: block;
+            animation: glitchIn 0.5s forwards;
+        }
+
+        .download-button {
+            margin-top: 1.5em;
+            padding: 0.8em 1.5em;
+            background: rgba(255, 0, 0, 0.1);
+            border: 1px solid #ff0000;
+            color: #ff0000;
+            cursor: pointer;
+            font-family: 'Courier New', monospace;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            text-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .download-button:hover {
+            background: rgba(255, 0, 0, 0.2);
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+        }
+
+        .download-button::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                transparent,
+                rgba(255, 0, 0, 0.1),
+                transparent
+            );
+            transform: rotate(45deg);
+            animation: glint 3s infinite;
+        }
+
+        .bio-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #00ff00;
+            animation: scan 2s linear infinite;
+        }
+
+        @keyframes scan {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(100%);
+            }
+        }
+
+        @keyframes glitchIn {
+            0% {
+                clip-path: inset(100% 0 0 0);
+                transform: translateX(-10px);
+            }
+            100% {
+                clip-path: inset(0 0 0 0);
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="rain"></div>
+    <div class="lightning"></div>
+    <div class="container">
+        <div class="glitch-wrapper">
+            <div class="glitch">
+                hackedapostle
+                <span>hackedapostle</span>
+                <span>hackedapostle</span>
+            </div>
+        </div>
+        
+        <div class="profile">
+            <img src="https://github.com/hackedapostle.png" alt="GitHub Profile">
+            <div class="terminal-text" id="terminal"></div>
+            <button class="bio-button" id="bioButton">$ cat /etc/passwd</button>
+            <button class="download-button" id="downloadButton">wget hackedapostle.exe</button>
+            <div class="bio-content" id="bioContent">
+                In the beginning, there was darkness in the digital realm, and the spirit of curiosity moved upon the face of the networks. And I said, "Let there be light," and there was knowledge.
+
+                And lo, I beheld the sacred terminals of old, where the ancient ones had inscribed their wisdom in bits and bytes. Through the valley of the shadow of firewalls I walked, fearing no malware, for my payload was with me.
+
+                As it is written in the Book of Exploits: "Seek and ye shall find vulnerabilities; knock, and ports shall be opened unto you." For many were called to hack, but few were chosen to master the art of ethical penetration.
+
+                In those days, I wandered through the wilderness of code, testing the boundaries of systems, not to destroy but to fortify. For as the prophet Mitnick spoke: "The hacker way is not to break and enter, but to understand and protect."
+
+                And now I share my chronicles with those who would learn, for it is written: "Let those with no exploit execute the first payload." Through CTFs and bounties, I honed my craft, turning swords into plowshares, black hat thoughts into white hat deeds.
+
+                Verily I say unto you, in the great repository of life, every bug is but an opportunity for redemption, every patch a step toward digital salvation. For we are not mere script kiddies, but guardians of the digital realm.
+
+                [System Status: Enlightened]
+                [Permissions: Ethical]
+                [Mission: Ongoing]
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Rain effect
+        function createRain() {
+            const rain = document.querySelector('.rain');
+            const drops = 200;
+
+            for(let i = 0; i < drops; i++) {
+                const drop = document.createElement('div');
+                drop.className = 'drop';
+                drop.style.left = `${Math.random() * 100}%`;
+                drop.style.animationDuration = `${Math.random() * 1 + 0.5}s`;
+                drop.style.animationDelay = `${Math.random() * 2}s`;
+                rain.appendChild(drop);
+            }
+        }
+
+        // Lightning effect
+        function createLightning() {
+            const lightning = document.querySelector('.lightning');
+            
+            function flash() {
+                lightning.style.backgroundColor = '#FFF';
+                lightning.style.opacity = Math.random() * 0.2 + 0.1;
+
+                setTimeout(() => {
+                    lightning.style.opacity = 0;
+                }, 50);
+
+                setTimeout(() => {
+                    lightning.style.backgroundColor = '#FFF';
+                    lightning.style.opacity = Math.random() * 0.2 + 0.1;
+                    
+                    setTimeout(() => {
+                        lightning.style.opacity = 0;
+                    }, 50);
+                }, 100);
+
+                setTimeout(flash, Math.random() * 10000 + 5000);
+            }
+
+            flash();
+        }
+
+        // Typing effect
+        const terminalText = document.getElementById('terminal');
+        const text = "Hello, friend... Shall we play a game?";
+        let index = 0;
+
+        function typeWriter() {
+            if (index < text.length) {
+                terminalText.innerHTML += text.charAt(index);
+                index++;
+                setTimeout(typeWriter, 100);
+            }
+        }
+
+        // Bio button click handler
+        const bioButton = document.getElementById('bioButton');
+        const bioContent = document.getElementById('bioContent');
+        
+        bioButton.addEventListener('click', () => {
+            bioContent.classList.toggle('active');
+            if (bioContent.classList.contains('active')) {
+                bioButton.textContent = '$ killall -9 cat';
+            } else {
+                bioButton.textContent = '$ cat /etc/passwd';
+            }
+        });
+
+        // Initialize effects
+        createRain();
+        createLightning();
+        setTimeout(typeWriter, 1500);
+    </script>
+</body>
+</html>
