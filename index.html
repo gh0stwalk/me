@@ -32,7 +32,7 @@
           <a href="https://discord.com/users/1345395486089023568" target="_blank" class="social-icon"><i class="fab fa-discord"></i></a>
         </div>
 
-        <!-- Spinning disc and volume control moved under profile -->
+        <!-- Spinning disc and volume control -->
         <div class="volume-controls">
           <svg id="open-controls" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor" class="rotate-disc">
             <path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm0-144a56.06,56.06,0,0,0-56,56,8,8,0,0,1-16,0,72.08,72.08,0,0,1,72-72,8,8,0,0,1,0,16Zm72,56a72.08,72.08,0,0,1-72,72,8,8,0,0,1,0-16,56.06,56.06,0,0,0,56-56,8,8,0,0,1,16,0Zm-40,0a32,32,0,1,0-32,32A32,32,0,0,0,160,128Zm-48,0a16,16,0,1,1,16,16A16,16,0,0,1,112,128Z"/>
@@ -41,10 +41,14 @@
         </div>
       </div>
 
+      <!-- Background Video -->
+      <video playsinline loop id="bgVideo">
+        <source src="" type="video/mp4">
+      </video>
     </div>
 
-    <!-- Music Player (No controls, autoplay enabled) -->
-    <audio id="music" loop autoplay muted>
+    <!-- Music Player -->
+    <audio id="music" loop>
       <source src="https://github.com/hackedapostle/me/blob/main/music.mp4" type="audio/mpeg">
       Your browser does not support the audio element.
     </audio>
@@ -92,6 +96,7 @@
         height: 50px;
         margin-right: 10px;
         transition: all 0.3s;
+        cursor: pointer; /* Makes it clickable */
       }
 
       .social-links a {
@@ -159,22 +164,27 @@
     </style>
 
     <script>
+      // Wait for the user to click the spinning disc to start playing music
+      const spinningDisc = document.getElementById("open-controls");
       const music = document.getElementById("music");
       const video = document.getElementById("bgVideo");
       const volumeRange = document.getElementById("volumeRange");
 
-      // Set the music to autoplay on page load, and unmute it after page load
-      window.addEventListener("load", () => {
+      // When the user clicks the spinning disc, start music and video
+      spinningDisc.addEventListener("click", () => {
         music.play();
         video.play();
+
+        // Set volume according to the volume slider
         music.volume = volumeRange.value;
         video.volume = volumeRange.value;
 
-        // Unmute music after page load
+        // Ensure audio and video are not muted
         music.muted = false;
+        video.muted = false;
       });
 
-      // Update music and video volume with the volume slider
+      // Volume control logic
       volumeRange.addEventListener("input", () => {
         music.volume = volumeRange.value;
         video.volume = volumeRange.value;
