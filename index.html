@@ -1,115 +1,184 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>me</title>
-    <style>
-        body {
-    background-color: #1e1e1e; /* Dark background */
-    color: #ffffff; /* White text */
-    font-family: monospace; /* Monospace font for plain text */
-    white-space: pre-wrap; /* Preserve whitespace and allow wrapping */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    width: 100vw;
-    text-align: center;
-    overflow: hidden; /* Prevents scrolling */
-    margin: 0;
-    padding: 0;
-}
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-width: 90vw; /* Prevents content from exceeding viewport width */
-    max-height: 98vh; /* Prevents content from exceeding viewport height */
-    overflow: hidden;
-}
-.ascii-header, .ascii-content, .ascii-art {
-    text-align: center;
-    overflow: hidden;
-    word-wrap: break-word; /* Prevents horizontal overflow */
-    max-width: 100%;
-}
-
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="ascii-header">
-===========================================================================================================
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>hackedapostle</title>
+    <link rel="icon" href="https://avatars.githubusercontent.com/u/200882055?v=4" type="image/x-icon"/>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <meta name="theme-color" content="#009cff" />
+  </head>
+  <body>
+    <div class="content-wrapper">
+      <!-- ASCII Art -->
+      <pre class="ascii-art">
 ██╗  ██╗ █████╗  ██████╗██╗  ██╗███████╗██████╗  █████╗ ██████╗  ██████╗ ███████╗████████╗██╗     ███████╗
 ██║  ██║██╔══██╗██╔════╝██║ ██╔╝██╔════╝██╔══██╗██╔══██╗██╔══██╗██╔═══██╗██╔════╝╚══██╔══╝██║     ██╔════╝
 ███████║███████║██║     █████╔╝ █████╗  ██║  ██║███████║██████╔╝██║   ██║███████╗   ██║   ██║     █████╗  
 ██╔══██║██╔══██║██║     ██╔═██╗ ██╔══╝  ██║  ██║██╔══██║██╔═══╝ ██║   ██║╚════██║   ██║   ██║     ██╔══╝  
 ██║  ██║██║  ██║╚██████╗██║  ██╗███████╗██████╔╝██║  ██║██║     ╚██████╔╝███████║   ██║   ███████╗███████╗
 ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚══════╝╚═════╝ ╚═╝  ╚═╝╚═╝      ╚═════╝ ╚══════╝   ╚═╝   ╚══════╝╚══════╝
-                                                                ============================================================================================================                                                                                                       
+      </pre>
+
+      <!-- Avatar and social links -->
+      <div class="profile">
+        <div class="avatar">
+          <img src="https://avatars.githubusercontent.com/u/200882055?v=4" alt="Avatar" id="userAvatar">
         </div>
-        <div class="ascii-content">
-====================================================================================================================================
-In the beginning, there was darkness in the digital realm, and the spirit of curiosity moved upon the face of the networks. 
-And I said, "Let there be light," and there was knowledge. 
-And lo, I beheld the sacred terminals of old, where the ancient ones had inscribed their wisdom in bits and bytes. 
-Through the valley of the shadow of firewalls I walked, fearing no malware, for my payload was with me. 
-As it is written in the Book of Exploits: "Seek and ye shall find vulnerabilities; knock, and ports shall be opened unto you." 
-For many were called to hack, but few were chosen to master the art of ethical penetration. 
-In those days, I wandered through the wilderness of code, testing the boundaries of systems, not to destroy but to fortify. 
-For as the prophet Mitnick spoke: "The hacker way is not to break and enter, but to understand and protect." 
-And now I share my chronicles with those who would learn, for it is written: "Let those with no exploit execute the first payload." 
-Through CTFs and bounties, I honed my craft, turning swords into plowshares, black hat thoughts into white hat deeds. 
-Verily I say unto you, in the great repository of life, every bug is but an opportunity for redemption, every patch a step toward digital salvation. 
-For we are not mere script kiddies, but guardians of the digital realm.
-====================================================================================================================================
-        
-==============================
-|[System Status: Enlightened]|
-==============================
-<a></a>
-========================
-|[Permissions: Ethical]| 
-========================
-<a></a>
-====================
-|[Mission: Ongoing]|
-====================
-<a></a>
-==================
-|[Mood: Fsociety]|
-==================
+        <div class="social-links">
+          <a href="https://github.com/hackedapostle" target="_blank" class="social-icon"><i class="fab fa-github"></i></a>
+          <a href="https://discord.com/users/1345395486089023568" target="_blank" class="social-icon"><i class="fab fa-discord"></i></a>
         </div>
-        <div class="ascii-art">
-                @@@@@@@@@@@@@@@@@                
-            @@@@@@@@@@@@@@@@@@@@@@@@@            
-         @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@         
-       @@@@@@@@@                 @@@@@@@@@       
-     @@@@@@@@                       @@@@@@@@     
-    @@@@@@                             @@@@@@    
-   @@@@@@                               @@@@@@   
-  @@@@@@      @@@@             @@@@@     @@@@@@  
- @@@@@@       @@@@@@@@@@@@@@@@@@@@@        @@@@@ 
-@@@@@@        @@@@@@@@@@@@@@@@@@@@@        @@@@@@
-@@@@@        @@@@@@@@@@@@@@@@@@@@@@         @@@@@
-@@@@@        @@@@@@@@@@@@@@@@@@@@@@@        @@@@@
-@@@@@       @@@@@@@@@@@@@@@@@@@@@@@@        @@@@@
-@@@@@       @@@@@@@@@@@@@@@@@@@@@@@@@       @@@@@
-@@@@@       @@@@@@@@@@@@@@@@@@@@@@@@        @@@@@
-@@@@@        @@@@@@@@@@@@@@@@@@@@@@@        @@@@@
-@@@@@@        @@@@@@@@@@@@@@@@@@@@@        @@@@@@
- @@@@@@  @@@    @@@@@@@@@@@@@@@@@          @@@@@ 
-  @@@@@    @@@@     @@@@@@@@@@            @@@@@  
-   @@@@@@    @@@@@@@@@@@@@@@@@@         @@@@@@   
-    @@@@@@    @@@@@@@@@@@@@@@@@        @@@@@@    
-     @@@@@@@@      @@@@@@@@@@@@     @@@@@@@@     
-       @@@@@@@@@   @@@@@@@@@@@@  @@@@@@@@@       
-           https://github.com/hackedapostle            
-           @@@@@@@@@@@@@@@@@@@@@@@@@@           
-  @@@@@@@@@@@@@@@@@   
+
+        <!-- Spinning disc and volume control moved under profile -->
+        <div class="volume-controls">
+          <svg id="open-controls" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor" class="rotate-disc">
+            <path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm0-144a56.06,56.06,0,0,0-56,56,8,8,0,0,1-16,0,72.08,72.08,0,0,1,72-72,8,8,0,0,1,0,16Zm72,56a72.08,72.08,0,0,1-72,72,8,8,0,0,1,0-16,56.06,56.06,0,0,0,56-56,8,8,0,0,1,16,0Zm-40,0a32,32,0,1,0-32,32A32,32,0,0,0,160,128Zm-48,0a16,16,0,1,1,16,16A16,16,0,0,1,112,128Z"/>
+          </svg>
+          <input type="range" id="volumeRange" min="0" max="1" step="0.01" value="1">
         </div>
+      </div>
+
     </div>
-</body>
+
+    <!-- Music Player (No controls, autoplay enabled) -->
+    <audio id="music" loop autoplay muted>
+      <source src="https://r2.interrupted.me/music/426_hO7V.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+
+    <style>
+      body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        font-family: 'Outfit', sans-serif;
+        background: #0D1117;
+        overflow: hidden;
+        color: white;
+      }
+
+      .content-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        flex-direction: column;
+      }
+
+      #bgVideo {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -1;
+      }
+
+      .volume-controls {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 10px;
+      }
+
+      .rotate-disc {
+        animation: spin 3s linear infinite;
+        width: 50px;
+        color: limegreen;
+        height: 50px;
+        margin-right: 10px;
+        transition: all 0.3s;
+      }
+
+      .social-links a {
+        margin: 0 10px;
+        font-size: 24px;
+        color: limegreen;
+        transition: color 0.3s;
+      }
+
+      .social-links a:hover {
+        color: white;
+      }
+
+      #userAvatar {
+        border-radius: 50%;
+        width: 120px;
+        height: 120px;
+        margin-bottom: 20px;
+      }
+
+      .profile {
+        text-align: center;
+      }
+
+      .social-links {
+        margin-top: 20px;
+      }
+
+      .volume-controls input {
+        width: 100px;
+        height: 10px;
+        background: #444;
+        border-radius: 5px;
+        outline: none;
+        transition: background 0.3s;
+      }
+
+      .volume-controls input:focus {
+        background: #333;
+      }
+
+      .volume-controls input::-webkit-slider-runnable-track {
+        background: limegreen;
+        height: 10px;
+        border-radius: 5px;
+      }
+
+      .volume-controls input::-webkit-slider-thumb {
+        background: limegreen;
+        border-radius: 50%;
+        height: 20px;
+        width: 20px;
+        margin-top: -5px;
+        cursor: pointer;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+
+    <script>
+      const music = document.getElementById("music");
+      const video = document.getElementById("bgVideo");
+      const volumeRange = document.getElementById("volumeRange");
+
+      // Set the music to autoplay on page load, and unmute it after page load
+      window.addEventListener("load", () => {
+        music.play();
+        video.play();
+        music.volume = volumeRange.value;
+        video.volume = volumeRange.value;
+
+        // Unmute music after page load
+        music.muted = false;
+      });
+
+      // Update music and video volume with the volume slider
+      volumeRange.addEventListener("input", () => {
+        music.volume = volumeRange.value;
+        video.volume = volumeRange.value;
+      });
+    </script>
+  </body>
 </html>
